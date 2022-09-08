@@ -1,5 +1,5 @@
-const chai = require('chai');
-const sinon = require('sinon');
+const { expect } = require('chai');
+const { stub } = require('sinon');
 const chaiHttp = require('chai-http');
 
 const server = require('../../api/app');
@@ -8,11 +8,10 @@ const { Book: bookMock }  = require('../mock/models')
 
 chai.use(chaiHttp);
 
-const { expect } = chai;
 
-describe('Rota /livros', () => {
+describe('Teste de Integração da Rota GET /livros', () => {
     before(() => {
-        sinon.stub(book, 'findAll')
+        stub(book, 'findAll')
             .callsFake(bookMock.findAll);
     });
 

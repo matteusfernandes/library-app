@@ -2,7 +2,10 @@ const Book = (sequelize, DataTypes) => {
   const Book = sequelize.define(
     "book", 
     {
-      id: DataTypes.INTEGER,
+      id: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+      },
       titulo: DataTypes.STRING,
       editora: DataTypes.STRING,
       anoPublicacao: DataTypes.STRING,
@@ -17,4 +20,4 @@ const Book = (sequelize, DataTypes) => {
   return Book;
 };
 
-module.exports = book;
+module.exports = Book;

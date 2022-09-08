@@ -1,0 +1,11 @@
+{
+  "name": "library-app",
+  "version": "1.0.0",
+  "description": "Aplicação criada como parte de processo avaliativo para vaga de Desenvolvedor da empresa Micks. O intuíto da aplicação é simular uma API que seria utilizada por uma livraria.",
+  "scripts": {
+    "prestart": "./scripts/prestart-dev.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

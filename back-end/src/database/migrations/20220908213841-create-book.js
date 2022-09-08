@@ -8,26 +8,21 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      id: {
-        type: Sequelize.INTEGER
-      },
       titulo: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        field: "titulo",
+        allowNull: false,
       },
       editora: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        field: "editora",
+        allowNull: false,
       },
       anoPublicacao: {
-        type: Sequelize.INTEGER
-      },
-      createdAt: {
+        type: Sequelize.INTEGER,
+        field: "ano_publicacao",
         allowNull: false,
-        type: Sequelize.DATE
       },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
     });
   },
   down: async (queryInterface, Sequelize) => {

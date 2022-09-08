@@ -2,22 +2,22 @@ const chai = require('chai');
 const sinon = require('sinon');
 const chaiHttp = require('chai-http');
 
-const server = require('../../api/server');
-const { Book } = require('../../database/models');
-const { Book: bookMock }  = require('./mock/models')
+const server = require('../../api/app');
+const { book } = require('../../database/models');
+const { Book: bookMock }  = require('../mock/models')
 
 chai.use(chaiHttp);
 
 const { expect } = chai;
 
-describe('Rota /api/livros', () => {
+describe('Rota /livros', () => {
     before(() => {
-        sinon.stub(Book, 'findAll')
+        sinon.stub(book, 'findAll')
             .callsFake(bookMock.findAll);
     });
 
     after(() => {
-        Book.findAll.restore();
+        book.findAll.restore();
     });
 
     describe('Consulta a lista de livros', () => {
@@ -26,7 +26,7 @@ describe('Rota /api/livros', () => {
         before(async () => {
             response = await chai
                 .request(server)
-                .get('/api/livros');
+                .get('/livros');
         });
 
         it('Essa requisição deve retornar código de status 200', () => {

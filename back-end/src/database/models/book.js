@@ -13,7 +13,7 @@ const Book = (sequelize, DataTypes) => {
     {
       timestamps: false,
       underscored: true,
-      tableName: "books",
+      tableName: "livros",
     },
   );
 

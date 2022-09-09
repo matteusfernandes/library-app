@@ -1,2 +1,2 @@
 module.exports.getAll = require('./getAllBooksController');
-module.exports.getBookById = require('./getBoookByIdController');
+module.exports.getBookById = require('./getBookByIdController');

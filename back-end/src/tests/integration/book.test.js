@@ -72,7 +72,7 @@ describe('Testes de integração:', () => {
                 findAllStub.callsFake(bookMock.findById);
                 response = await chai
                     .request(server)
-                    .get('/livros/:id');
+                    .get('/livros/1');
                 });
           
               after(() => {

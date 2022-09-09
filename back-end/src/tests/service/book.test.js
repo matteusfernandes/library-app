@@ -5,12 +5,12 @@ const { book } = require('../../database/models');
 const BookService = require('../../books/services');
 const { Book: bookMock }  = require('../mock/models');
 
-describe('BookService', () => {
+describe(' Teste dos services de Book', () => {
   describe('#getAll', () => {
     const findAllStub = stub(book, 'findAll');
     let books;
 
-    describe('quando não existe nenhum livro cadastrado', () => {
+    describe('Quando não existe nenhum livro cadastrado', () => {
       before(async () => {
         findAllStub.resolves([]);
         books = await BookService.getAll();
@@ -20,7 +20,7 @@ describe('BookService', () => {
         findAllStub.reset();
       });
   
-      it('called Book.findAll', () => {
+      it('chama a função Book.findAll', () => {
         expect(book.findAll.calledOnce).to.be.equals(true);
       });
   
@@ -33,7 +33,7 @@ describe('BookService', () => {
       });
     });
 
-    describe('quando existem livros cadastrados', () => {
+    describe('Quando existem livros cadastrados', () => {
       before(async () => {
         findAllStub.resolves(await bookMock.findAll());
         books = await BookService.getAll();
@@ -43,7 +43,7 @@ describe('BookService', () => {
         findAllStub.restore();
       });
   
-      it('called Book.findAll', async () => {
+      it('chama a função Book.findAll', async () => {
         expect(book.findAll.calledOnce).to.be.equals(true);
       });
   

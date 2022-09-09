@@ -10,8 +10,9 @@ chai.use(chaiHttp);
 const { expect } = chai;
 
 describe('Testes de integração:', () => {
+    const findAllStub = stub(book, 'findAll');
+
     describe('Teste de Integração da Rota GET /livros', () => {
-        const findAllStub = stub(book, 'findAll');
         let response;
 
         describe('Quando existem livros cadastrados', async () => {
@@ -49,6 +50,59 @@ describe('Testes de integração:', () => {
     
             it('Essa requisição deve retornar código de status 200', async () => {
                 expect(response).to.have.status(200);
+            });
+    
+            it('A requisição GET para a rota traz uma lista vazia', async () => {
+                expect(response.body).to.have.length(0);
+            });
+        });
+    });
+
+    describe('Teste de Integração da Rota GET /livros:id', () => {
+        let response;
+        const expectBook =
+            {
+                "id": 1,
+                "titulo": "Harry Potter e a Pedra Filosofal",
+                "editora": "Bloomsbury Publishing",
+                "anoPublicacao": 1997
+            };
+
+        describe('Quando existe o livro procurado', async () => {
+            before(async () => {
+                findAllStub.callsFake(bookMock.findById);
+                response = await chai
+                    .request(server)
+                    .get('/livros:id');
+                });
+          
+              after(() => {
+                findAllStub.restore();
+              });
+    
+            it('Essa requisição deve retornar código de status 200', async () => {
+                expect(response).to.have.status(200);
+            });
+    
+            it('A requisição GET para a rota traz o elemento de ID 1', async () => {
+                expect(response.body).to.deep.equal(expectBook);
+            });
+        });
+
+        describe('Quando não existe o livro procurado', async () => {
+            before(async () => {
+                findAllStub.resolves([]);
+                response = await chai
+                    .request(server)
+                    .get('/livros:id');
+                });
+          
+              after(() => {
+                findAllStub.restore();
+              });
+    
+            it('Essa requisição deve retornar código de status 200', async () => {
+                expect(response).to.have.status(204);
             });
     
             it('A requisição GET para a rota traz uma lista vazia', async () => {

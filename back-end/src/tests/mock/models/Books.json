@@ -3,12 +3,12 @@
     "id": 1,
     "titulo": "Harry Potter e a Pedra Filosofal",
     "editora": "Bloomsbury Publishing",
-    "anoPublicacao":  1997
+    "anoPublicacao": 1997
   },
   {
     "id": 2,
     "titulo": "O Senhor dos Anéis",
     "editora": "Allen & Unwin",
-    "anoPublicacao":  1954
+    "anoPublicacao": 1954
   }
 ]

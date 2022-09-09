@@ -12,7 +12,7 @@
     "db:reset": "cd database && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
     "start": "node .",
     "dev": "nodemon .",
-    "test": "mocha src/tests/**/*.test.js --exit"
+    "test": "mocha src/tests/integration/**/*.test.js --exit && mocha src/tests/models/**/*.test.js --exit && mocha src/tests/service/**/*.test.js --exit"
   },
   "dependencies": {
     "@types/express": "4.17.11",

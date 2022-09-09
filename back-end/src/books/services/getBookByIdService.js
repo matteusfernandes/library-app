@@ -1,9 +1,7 @@
 const { book } = require('../../database/models');
 
 module.exports = async (id) => {
-  const foundedBook = await book.findAll({
-    where: {id},
-  });
+  const foundedBook = await book.findByPk(id)
 
-  return foundedBook[0];
+  return foundedBook;
 };

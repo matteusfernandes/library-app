@@ -11,10 +11,9 @@ const { expect } = chai;
 
 describe('Testes de integração:', () => {
     const findAllStub = stub(book, 'findAll');
+    let response;
 
     describe('Teste de Integração da Rota GET /livros', () => {
-        let response;
-
         describe('Quando existem livros cadastrados', async () => {
             before(async () => {
                 findAllStub.callsFake(bookMock.findAll);
@@ -58,8 +57,8 @@ describe('Testes de integração:', () => {
         });
     });
 
-    describe('Teste de Integração da Rota GET /livros:id', () => {
-        let response;
+    describe('Teste de Integração da Rota GET /livros/:id', () => {
+        const expectErrorMessage = { "message": "Book not Found" };
         const expectBook =
             {
                 "id": 1,
@@ -73,7 +72,7 @@ describe('Testes de integração:', () => {
                 findAllStub.callsFake(bookMock.findById);
                 response = await chai
                     .request(server)
-                    .get('/livros:id');
+                    .get('/livros/:id');
                 });
           
               after(() => {
@@ -94,19 +93,19 @@ describe('Testes de integração:', () => {
                 findAllStub.resolves([]);
                 response = await chai
                     .request(server)
-                    .get('/livros:id');
+                    .get('/livros/0');
                 });
           
               after(() => {
                 findAllStub.restore();
               });
     
-            it('Essa requisição deve retornar código de status 200', async () => {
-                expect(response).to.have.status(204);
+            it('Essa requisição deve retornar código de status 204', async () => {
+                expect(response).to.have.status(404);
             });
     
-            it('A requisição GET para a rota traz uma lista vazia', async () => {
-                expect(response.body).to.have.length(0);
+            it('A requisição GET para a rota traz a mensagem "Book not Found"', async () => {
+                expect(response.body).to.deep.equal(expectErrorMessage);
             });
         });
     });

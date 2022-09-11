@@ -35,26 +35,26 @@ describe('Testes de integração:', () => {
             });
         });
 
-        describe('Quando não existem livros cadastrados', async () => {
-            before(async () => {
-                findAllStub.resolves([]);
-                response = await chai
-                    .request(server)
-                    .get('/livros');
-                });
+        // describe('Quando não existem livros cadastrados', async () => {
+        //     before(async () => {
+        //         findAllStub.callsFake(bookMock.emptyArray);
+        //         response = await chai
+        //             .request(server)
+        //             .get('/livros');
+        //         });
           
-              after(() => {
-                findAllStub.restore();
-              });
+        //       after(() => {
+        //         findAllStub.restore();
+        //       });
     
-            it('Essa requisição deve retornar código de status 200', async () => {
-                expect(response).to.have.status(200);
-            });
+        //     it('Essa requisição deve retornar código de status 200', async () => {
+        //         expect(response).to.have.status(200);
+        //     });
     
-            it('A requisição GET para a rota traz uma lista vazia', async () => {
-                expect(response.body).to.have.length(0);
-            });
-        });
+        //     it('A requisição GET para a rota traz uma lista vazia', async () => {
+        //         expect(response.body).to.have.length(0);
+        //     });
+        // });
     });
 
     describe('Teste de Integração da Rota GET /livros/:id', () => {

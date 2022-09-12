@@ -56,4 +56,49 @@ describe(' Teste dos services de Book', () => {
       });
     });
   });
+
+  describe('#getById', () => {
+    const findByPkStub = stub(book, 'findByPk');
+    let books;
+
+    describe('quando existe o livro', () => {
+      before(async () => {
+        findByPkStub.resolves(bookMock.findByPk);
+        books = await BookService.getBookById(1);
+      });
+  
+      after(() => {
+        findByPkStub.reset();
+        books = null;
+      });
+  
+      it('called Book.findByPk', async () => {
+        expect(book.findByPk.calledOnce).to.be.equals(true);
+      });
+  
+      it('a resposta é um objeto contendo os dados do livro', async () => {
+        expect(books).to.deep.equal(bookMock.findByPk);
+      });
+    });
+
+    describe('quando não existe o livro', () => {
+      before(async () => {
+        findByPkStub.resolves(null);
+        books = await BookService.getBookById(1000);
+      });
+  
+      after(() => {
+        findByPkStub.reset();
+        books = null;
+      });
+  
+      it('called Book.findByPk', async () => {
+        expect(book.findByPk.calledOnce).to.be.equals(true);
+      });
+  
+      it('a resposta é um objeto contendo os dados do livro', async () => {
+        expect(books).to.be.null
+      });
+    });
+  });
 });

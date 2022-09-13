@@ -6,7 +6,8 @@ module.exports = async (id, bookData) => {
 
   if (!idBook) throw utils.error(404, 'livro não encontrado');
 
-  const [updatedUser] = await book.update({...bookData }, { where: { id } });
+  await book.update({...bookData }, { where: { id } });
+  const updatedBook = await book.findOne({ where: id });
 
-  return updatedUser;
+  return updatedBook;
 };

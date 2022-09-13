@@ -55,9 +55,9 @@ describe('Testes de Integração da API na rota PUT /livros/:id', async () => {
 
     it('Atualiza um livro existente com sucesso', async () => {
         let response = await chai.request(server)
-            .put('/livros/3').send({ anoPublicacao: 2019 });
+            .put('/livros/3').send(bookToUpdate);
         expect(response).to.have.status(200);
-        expect(response.body).to.deep.equal(bookToUpdate);
+        expect(response.body).to.deep.equal({ id: 3, ...bookToUpdate });
     });
 
     it('Se o livro não existe, gera um erro', async () => {

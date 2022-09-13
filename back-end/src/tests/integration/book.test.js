@@ -5,7 +5,7 @@ const server = require('../../api/app');
 chai.use(chaiHttp);
 const { expect } = chai;
 
-describe('Testes de Integração da API na rota /livros', async () => {
+describe('Testes de Integração da API na rota GET /livros', async () => {
     
     it('Essa requisição retorna todos os livros cadastrados', async () => {
         let response = await chai.request(server)
@@ -15,7 +15,7 @@ describe('Testes de Integração da API na rota /livros', async () => {
     });
 });
 
-describe('Testes de Integração da API na rota /livros/:id', async () => {
+describe('Testes de Integração da API na rota GET /livros/:id', async () => {
     const expectBook = {
         "id": 1,
         "titulo": "Harry Potter e a Pedra Filosofal",
@@ -28,5 +28,21 @@ describe('Testes de Integração da API na rota /livros/:id', async () => {
             .get('/livros/1');
         expect(response).to.have.status(200);
         expect(response.body).to.deep.equal(expectBook);
+    });
+});
+
+describe('Testes de Integração da API na rota POST /livros', async () => {
+    const newBook = {
+        "id": 3,
+        "titulo": "O Chamado de Cthulhu",
+        "editora": "Darkside",
+        "anoPublicacao": 2021
+    };
+
+    it('Essa requisição retorna o  novo livro cadastrado', async () => {
+        let response = await chai.request(server)
+            .post('/livros');
+        expect(response).to.have.status(200);
+        expect(response.body).to.deep.equal(newBook);
     });
 });

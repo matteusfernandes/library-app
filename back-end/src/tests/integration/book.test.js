@@ -38,10 +38,32 @@ describe('Testes de Integração da API na rota POST /livros', async () => {
         "anoPublicacao": 2021
     };
 
-    it('Essa requisição retorna o  novo livro cadastrado', async () => {
+    it('Essa requisição retorna o novo livro cadastrado', async () => {
         let response = await chai.request(server)
             .post('/livros').send(newBook);
         expect(response).to.have.status(201);
         expect(response.body).to.include(newBook);
+    });
+});
+
+describe('Testes de Integração da API na rota PUT /livros/:id', async () => {
+    const bookToUpdate = {
+        "titulo": "O Chamado de Cthulhu",
+        "editora": "Darkside",
+        "anoPublicacao": 2019
+    };
+
+    it('Atualiza um livro existente com sucesso', async () => {
+        let response = await chai.request(server)
+            .put('/livros/3').send({ anoPublicacao: 2019 });
+        expect(response).to.have.status(200);
+        expect(response.body).to.deep.equal(bookToUpdate);
+    });
+
+    it('Se o livro não existe, gera um erro', async () => {
+        let response = await chai.request(server)
+            .put('/livros/4').send({ "anoPublicacao": 2019 });
+        expect(response).to.have.status(404);
+        expect(response.body).to.deep.equal({ message: 'livro não encontrado' });
     });
 });

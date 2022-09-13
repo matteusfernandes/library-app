@@ -40,8 +40,8 @@ describe('Testes de Integração da API na rota POST /livros', async () => {
 
     it('Essa requisição retorna o  novo livro cadastrado', async () => {
         let response = await chai.request(server)
-            .post('/livros');
-        expect(response).to.have.status(200);
+            .post('/livros').send(newBook);
+        expect(response).to.have.status(201);
         expect(response.body).to.deep.equal({ "id": 3, ...newBook });
     });
 });

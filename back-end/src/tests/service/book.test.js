@@ -101,4 +101,37 @@ describe(' Teste dos services de Book', () => {
       });
     });
   });
+
+  describe('#create', () => {
+    describe('retorna o registro do livro criado', () => {
+      const createStub = stub(book, 'create');
+      let books;
+      const newBook = {
+        "titulo": "O Chamado de Cthulhu",
+        "editora": "Darkside",
+        "anoPublicacao": 2021
+    };
+  
+      before(async () => {
+        createStub.resolves({
+          id: 4,
+          ...newBook,
+        });
+  
+        books = await BookService.createNewBook(newBook);
+      });
+  
+      after(() => {
+        createStub.reset();
+      });
+  
+      it('called Book.create', async () => {
+        expect(book.create.calledOnce).to.be.equals(true);
+      });
+  
+      it('a resposta é um objeto contendo os dados do livro', async () => {
+        expect(books).to.include(newBook);
+      });
+    });
+  });
 });

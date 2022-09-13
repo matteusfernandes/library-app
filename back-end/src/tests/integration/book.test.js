@@ -42,6 +42,6 @@ describe('Testes de Integração da API na rota POST /livros', async () => {
         let response = await chai.request(server)
             .post('/livros').send(newBook);
         expect(response).to.have.status(201);
-        expect(response.body).to.deep.equal({ "id": 3, ...newBook });
+        expect(response.body).to.include(newBook);
     });
 });

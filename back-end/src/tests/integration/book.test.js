@@ -33,7 +33,6 @@ describe('Testes de Integração da API na rota GET /livros/:id', async () => {
 
 describe('Testes de Integração da API na rota POST /livros', async () => {
     const newBook = {
-        "id": 3,
         "titulo": "O Chamado de Cthulhu",
         "editora": "Darkside",
         "anoPublicacao": 2021
@@ -43,6 +42,6 @@ describe('Testes de Integração da API na rota POST /livros', async () => {
         let response = await chai.request(server)
             .post('/livros');
         expect(response).to.have.status(200);
-        expect(response.body).to.deep.equal(newBook);
+        expect(response.body).to.deep.equal({ "id": 3, ...newBook });
     });
 });

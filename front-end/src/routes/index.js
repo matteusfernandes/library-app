@@ -1,6 +1,6 @@
 import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Livros from '../pages/livros';
+import Livros from '../pages/Home';
 
 export default function Router() {
   return (

@@ -34,4 +34,14 @@ describe('Testes do component <App.js />', () => {
     const searchAfterClick = screen.getByText(/Pesquisar Livro/i);
     expect(searchAfterClick).toBeInTheDocument();
   });
+
+  test('Se na aplicação existe um link para a página Cadastrar', async () => {
+    renderWithRouter(<App />);
+
+    const createNewBookLink = screen.getByRole('link', { name: /cadastrar/i });
+    expect(createNewBookLink).toBeInTheDocument();
+    await userEvent.click(createNewBookLink);
+    const createNewBookAfterClick = screen.getByText(/Cadastrar novo Livro/i);
+    expect(createNewBookAfterClick).toBeInTheDocument();
+  });
 });

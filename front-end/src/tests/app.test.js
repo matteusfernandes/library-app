@@ -24,4 +24,14 @@ describe('Testes do component <App.js />', () => {
     const booksAfterClick = screen.getByText(/Livros Encontrados/i);
     expect(booksAfterClick).toBeInTheDocument();
   });
+
+  test('Se na aplicação existe um link para a página Pesquisar', async () => {
+    renderWithRouter(<App />);
+
+    const searchLink = screen.getByRole('link', { name: /pesquisar/i });
+    expect(searchLink).toBeInTheDocument();
+    await userEvent.click(searchLink);
+    const searchAfterClick = screen.getByText(/Pesquisar Livro/i);
+    expect(searchAfterClick).toBeInTheDocument();
+  });
 });

@@ -67,3 +67,19 @@ describe('Testes de Integração da API na rota PUT /livros/:id', async () => {
         expect(response.body).to.deep.equal({ message: 'livro não encontrado' });
     });
 });
+
+describe('Testes de Integração da API na rota DELETE /livros/:id', async () => {
+    it('Deleta um livro existente com sucesso', async () => {
+        let response = await chai.request(server)
+            .delete('/livros/1');
+        expect(response).to.have.status(200);
+        expect(response.body).to.deep.equal({ message: 'livro deletado com sucesso' });
+    });
+
+    it('Se o livro não existe, gera um erro', async () => {
+        let response = await chai.request(server)
+            .delete('/livros/1000');
+        expect(response).to.have.status(404);
+        expect(response.body).to.deep.equal({ message: 'livro não encontrado' });
+    });
+});

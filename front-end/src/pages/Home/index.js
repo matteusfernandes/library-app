@@ -1,14 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import Header from '../../components/header';
 
 function Home() {
   return (
-    <div>
-      <nav>
-        <Link to="/">Home</Link>
-      </nav>
-      <h1>Library App</h1>
-    </div>
+    <>
+      <Header />
+      <main>
+        <h1>Library App</h1>
+      </main>
+    </>
   );
 }
 

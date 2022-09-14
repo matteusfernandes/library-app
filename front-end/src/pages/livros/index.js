@@ -7,7 +7,7 @@ function Login() {
       <nav>
         <Link to="/">Home</Link>
       </nav>
-      <h1>Livros Encontrados</h1>
+      <h1>Library App</h1>
     </div>
   );
 }

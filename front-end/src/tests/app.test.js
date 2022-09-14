@@ -11,7 +11,7 @@ describe('Testes do component <App.js />', () => {
     const homeLink = screen.getByRole('link', { name: /home/i });
     expect(homeLink).toBeInTheDocument();
     userEvent.click(homeLink);
-    const homeAfterClick = screen.getByText(/Livros Encontrados/i);
+    const homeAfterClick = screen.getByText(/Library App/i);
     expect(homeAfterClick).toBeInTheDocument();
   });
 });

@@ -57,14 +57,14 @@ describe('Testes de Integração da API na rota PUT /livros/:id', async () => {
         let response = await chai.request(server)
             .put('/livros/3').send(bookToUpdate);
         expect(response).to.have.status(200);
-        expect(response.body).to.deep.equal({ id: 3, ...bookToUpdate });
+        expect(response.body).to.deep.equal([1]);
     });
 
-    it('Se o livro não existe, gera um erro', async () => {
+    it('Se o livro não existe, retorna false', async () => {
         let response = await chai.request(server)
             .put('/livros/4').send({ "anoPublicacao": 2019 });
-        expect(response).to.have.status(404);
-        expect(response.body).to.deep.equal({ message: 'livro não encontrado' });
+        expect(response).to.have.status(200);
+        expect(response.body).to.deep.equal([0]);
     });
 });
 

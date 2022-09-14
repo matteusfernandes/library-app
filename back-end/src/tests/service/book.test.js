@@ -135,56 +135,55 @@ describe(' Teste dos services de Book', () => {
     });
   });
 
-  // describe('#update', () => {
-  //   const updateStub = stub(book, 'update');
-  //   const testBook = {
-  //     titulo: "Da Vinci O Código",
-  //     editora: "House Random",
-  //     anoPublicacao: 4002,
-  //   };
-  //   let updated;
+  describe('#update', () => {
+    const updateStub = stub(book, 'update');
+    const testBook = {
+      titulo: "Da Vinci O Código",
+      editora: "House Random",
+      anoPublicacao: 4002,
+    };
+    let updated;
 
-  //   describe('quando existe o livro', () => {
-  //     before(async () => {
-  //       updateStub.resolves([true]);
+    describe('quando existe o livro', () => {
+      before(async () => {
+        updateStub.resolves(true);
 
-  //       updated = await BookService.updateBook(1, testBook);
-  //       console.log(updated);
-  //     });
+        updated = await BookService.updateBook(1, testBook);
+      });
         
-  //     after(() => {
-  //       updateStub.reset();
-  //     });
+      after(() => {
+        updateStub.reset();
+      });
   
-  //     it('called Book.update', async () => {
-  //       expect(book.update.calledOnce).to.be.equals(true);
-  //     });
+      it('called Book.update', async () => {
+        expect(book.update.calledOnce).to.be.equals(true);
+      });
   
       
-  //     it('retorna o livro atualizado', async () => {
-  //       expect(updated).to.be.true;
-  //     });
-  //   });
+      it('retorna o livro atualizado', async () => {
+        expect(updated).to.be.true;
+      });
+    });
 
-  //   describe('quando não existe o livro', () => {
-  //     before(async () => {
-  //       updateStub.resolves([false]);
-  //       updated = await BookService.updateBook(1000, testBook)
-  //     });
+    describe('quando não existe o livro', () => {
+      before(async () => {
+        updateStub.resolves(false);
+        updated = await BookService.updateBook(1000, testBook)
+      });
         
-  //     after(() => {
-  //       updateStub.reset();
-  //     });
+      after(() => {
+        updateStub.reset();
+      });
   
-  //     it('called Book.update', async () => {
-  //       expect(book.update.calledOnce).to.be.equals(true);
-  //     });
+      it('called Book.update', async () => {
+        expect(book.update.calledOnce).to.be.equals(true);
+      });
   
-  //     it('retorna 0', async () => {
-  //       expect(updated).to.be.false;
-  //     });
-  //   });
-  // });
+      it('retorna 0', async () => {
+        expect(updated).to.be.false;
+      });
+    });
+  });
 
   describe('#remove', () => {
     const removeStub = stub(book, 'destroy');

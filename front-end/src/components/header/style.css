@@ -1,0 +1,23 @@
+header {
+  background-color: #272121;
+  color: white;
+  width: 100%;
+}
+
+nav link {
+  display: flex;
+  font-size: 20px;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0px;
+}
+
+.link-text {
+  color: white;
+  text-decoration: none;
+  margin: 10px;
+}
+
+.link-text:hover {
+  color: darkgreen;
+}

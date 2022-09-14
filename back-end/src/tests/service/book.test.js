@@ -107,10 +107,10 @@ describe(' Teste dos services de Book', () => {
       const createStub = stub(book, 'create');
       let books;
       const newBook = {
-        "titulo": "O Chamado de Cthulhu",
-        "editora": "Darkside",
-        "anoPublicacao": 2021
-    };
+        "titulo": "O Código Da Vinci",
+        "editora": "Random House",
+        "anoPublicacao": 2004
+      };
   
       before(async () => {
         createStub.resolves({
@@ -134,4 +134,55 @@ describe(' Teste dos services de Book', () => {
       });
     });
   });
+
+  // describe('#update', () => {
+  //   const updateStub = stub(book, 'update');
+  //   const testBook = {
+  //     titulo: "Da Vinci O Código",
+  //     editora: "House Random",
+  //     anoPublicacao: 4002,
+  //   };
+  //   let updated;
+
+  //   describe('quando existe o livro', () => {
+  //     before(async () => {
+  //       updateStub.resolves([true]);
+
+  //       updated = await BookService.updateBook(1, testBook);
+  //       console.log(updated);
+  //     });
+        
+  //     after(() => {
+  //       updateStub.reset();
+  //     });
+  
+  //     it('called Book.update', async () => {
+  //       expect(book.update.calledOnce).to.be.equals(true);
+  //     });
+  
+      
+  //     it('retorna o livro atualizado', async () => {
+  //       expect(updated).to.be.true;
+  //     });
+  //   });
+
+  //   describe('quando não existe o livro', () => {
+  //     before(async () => {
+  //       updateStub.resolves([false]);
+  //       updated = await BookService.updateBook(1000, testBook)
+  //     });
+        
+  //     after(() => {
+  //       updateStub.reset();
+  //     });
+  
+  //     it('called Book.update', async () => {
+  //       expect(book.update.calledOnce).to.be.equals(true);
+  //     });
+  
+  //     it('retorna 0', async () => {
+  //       expect(updated).to.be.false;
+  //     });
+  //   });
+  // });
 });

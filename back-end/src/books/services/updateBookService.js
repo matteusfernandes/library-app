@@ -10,5 +10,5 @@ module.exports = async (id, bookData) => {
   await book.update({...bookData }, { where: { id } });
   const updatedBook = await bookService.getBookById(id);
 
-  return updatedBook;
+  return updatedBook.dataValues;
 };

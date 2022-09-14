@@ -73,13 +73,13 @@ describe('Testes de Integração da API na rota DELETE /livros/:id', async () =>
         let response = await chai.request(server)
             .delete('/livros/1');
         expect(response).to.have.status(200);
-        expect(response.body).to.deep.equal({ id: 1, message: 'livro deletado com sucesso' });
+        expect(response.body).to.deep.equal(1);
     });
 
     it('Se o livro não existe, gera um erro', async () => {
         let response = await chai.request(server)
             .delete('/livros/1000');
-        expect(response).to.have.status(404);
-        expect(response.body).to.deep.equal({ message: 'livro não encontrado' });
+        expect(response).to.have.status(200);
+        expect(response.body).to.deep.equal(0);
     });
 });

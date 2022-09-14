@@ -185,4 +185,49 @@ describe(' Teste dos services de Book', () => {
   //     });
   //   });
   // });
+
+  describe('#remove', () => {
+    const removeStub = stub(book, 'destroy');
+
+    let removed;
+
+    describe('quando existe o livro', () => {
+      before(async () => {
+        removeStub.resolves(true);
+        removed = await BookService.deleteBook(2);
+      });
+        
+      after(() => {
+        removeStub.reset();
+      });
+  
+      it('called Book.destroy', async () => {
+        expect(book.destroy.calledOnce).to.be.equals(true);
+      });
+  
+      it('retorna true', async () => {
+        expect(removed).to.be.eq(true);
+      });
+    });
+
+    describe('quando não existe o livro', () => {
+      before(async () => {
+        removeStub.resolves(false);
+        updated = await BookService.deleteBook(1000)
+      });
+        
+      after(() => {
+        removeStub.reset();
+      });
+  
+      it('called Book.update', async () => {
+        expect(book.destroy.calledOnce).to.be.equals(true);
+      });
+  
+      
+      it('retorna false', async () => {
+        expect(updated).to.be.equals(false);
+      });
+    });
+  });
 });

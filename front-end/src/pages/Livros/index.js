@@ -12,7 +12,7 @@ function Livros() {
       .then((apiResponse) => {
         setBooks((apiResponse.data));
       }).catch((err) => console.log(err));
-  }, []);
+  }, [books]);
 
   return (
     <>

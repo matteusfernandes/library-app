@@ -1,9 +1,15 @@
 import React from 'react';
-import './style.css';
 import PropTypes from 'prop-types';
+import api from '../../api';
+import './style.css';
 import Button from '../button';
 
 function BookCard({ id, titulo, editora, anoPublicacao }) {
+  const deleteBook = (idToDelete) => {
+    api.delete(`/livros/${idToDelete}`)
+      .then(() => {}).catch((err) => console.log(err));
+  };
+
   return (
     <div className="container-card">
       <div className="card">
@@ -23,7 +29,7 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
           label="Deletar"
           name="delete"
           id={ id }
-          onClick=""
+          onClick={ () => deleteBook(id) }
         />
       </div>
     </div>

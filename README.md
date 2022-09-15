@@ -6,6 +6,8 @@ O desafio proposto era a construção de uma **API** para uma livraria que faça
 
 ## Protótipo e Diagrama de ER
 
+![image](https://user-images.githubusercontent.com/83843532/190362120-6e6ae56e-bb94-4fd4-9c40-2e82ae5f89f0.png)
+
 ## Instruções
 1. Clone o repositório
 - `git clone git@github.com:matteusfernandes/library-app.git`

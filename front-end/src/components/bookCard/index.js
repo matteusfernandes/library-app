@@ -6,8 +6,14 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
     <div>
       <div>
         <p>{ id }</p>
+      </div>
+      <div>
         <p>{ titulo }</p>
+      </div>
+      <div>
         <p>{ editora }</p>
+      </div>
+      <div>
         <p>{ anoPublicacao }</p>
       </div>
     </div>

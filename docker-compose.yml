@@ -1,0 +1,20 @@
+version: '3.8'
+services:
+  back-end:
+    build:
+      context: ./back-end
+    ports:
+      ${PORT_BACK}:${PORT_BACK}
+    volumes:
+      ./back-end:/app
+    env_file:
+      ./.env
+  front-end:
+    build:
+      context: ./front-end
+    ports:
+      ${PORT}:${PORT}
+    volumes:
+      ./front-end:/app
+    env_file:
+      ./.env

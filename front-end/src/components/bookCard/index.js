@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import api from '../../api';
 import './style.css';
 import Button from '../button';
+import Input from '../input';
 
 function BookCard({ id, titulo, editora, anoPublicacao }) {
   const [editBook, setEditBook] = useState(null);
@@ -10,6 +11,13 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
   const deleteBook = (idToDelete) => {
     api.delete(`/livros/${idToDelete}`)
       .then(() => {}).catch((err) => console.log(err));
+  };
+
+  const bookToEdit = (idToSearch) => {
+    api.get(`/livros/${idToSearch}`)
+      .then((apiResponse) => {
+        setEditBook(apiResponse.data);
+      }).catch((err) => console.log(err));
   };
 
   return (
@@ -25,7 +33,7 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
           label="Editar"
           name="edit"
           id={ id }
-          onClick={ () => console.log(id) }
+          onClick={ () => bookToEdit(id) }
         />
         <Button
           label="Deletar"
@@ -36,9 +44,35 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
       </div>
       { editBook && (
         <div>
-          <input type="text" />
-          <input type="text" />
-          <input type="text" />
+          <div>
+            <Input
+              type="text"
+              value={ editBook.titulo }
+              name="Titulo"
+              onChange=""
+            />
+            <Input
+              type="text"
+              value={ editBook.editora }
+              name="Titulo"
+              onChange=""
+            />
+            <Input
+              type="text"
+              value={ editBook.anoPublicacao }
+              name="Titulo"
+              onChange=""
+            />
+          </div>
+          <div>
+            <Button
+              type="button"
+              label="Confirmar"
+              name="finish-edit"
+              id="finish-edit"
+              onClick=""
+            />
+          </div>
         </div>
       )}
     </div>

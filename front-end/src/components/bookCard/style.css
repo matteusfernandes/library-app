@@ -55,7 +55,7 @@ button:active {
   box-shadow: var(--shadow-3);
 }
 
-.div_teste{
+.edit-div{
   align-items: center;
   background: gray;
   border-radius: 5px;

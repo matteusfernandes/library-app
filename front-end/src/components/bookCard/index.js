@@ -73,7 +73,7 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
         />
       </div>
       { editBook && (
-        <div className="div_teste">
+        <div className="edit-div">
           <div>
             <Input
               type="text"

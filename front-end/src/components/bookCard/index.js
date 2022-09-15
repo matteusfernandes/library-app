@@ -1,12 +1,10 @@
 import React from 'react';
+import './style.css';
 import PropTypes from 'prop-types';
 
 function BookCard({ id, titulo, editora, anoPublicacao }) {
   return (
-    <div>
-      <div>
-        <p>{ id }</p>
-      </div>
+    <div className="container-card">
       <div>
         <p>{ titulo }</p>
       </div>
@@ -15,6 +13,9 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
       </div>
       <div>
         <p>{ anoPublicacao }</p>
+      </div>
+      <div>
+        <p>{ id }</p>
       </div>
     </div>
   );

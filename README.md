@@ -86,6 +86,10 @@ O desafio proposto era a construção de uma **API** para uma livraria que faça
     - Acesse o container do **Back-End** através do comando:
 
       `docker exec -it <numero_do_container> bash`
+      
+      ou
+      
+      `docker exec -it <container-id> /bin/sh`
 
     - Execute o seguinte comando para criar e povoar o Banco de Dados:
 

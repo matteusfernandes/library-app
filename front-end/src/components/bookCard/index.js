@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import api from '../../api';
 import './style.css';
 import Button from '../button';
 
 function BookCard({ id, titulo, editora, anoPublicacao }) {
+  const [editBook, setEditBook] = useState(null);
+
   const deleteBook = (idToDelete) => {
     api.delete(`/livros/${idToDelete}`)
       .then(() => {}).catch((err) => console.log(err));
@@ -23,7 +25,7 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
           label="Editar"
           name="edit"
           id={ id }
-          onClick=""
+          onClick={ () => console.log(id) }
         />
         <Button
           label="Deletar"
@@ -32,6 +34,13 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
           onClick={ () => deleteBook(id) }
         />
       </div>
+      { editBook && (
+        <div>
+          <input type="text" />
+          <input type="text" />
+          <input type="text" />
+        </div>
+      )}
     </div>
   );
 }

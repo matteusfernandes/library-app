@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import api from '../../api';
+import './style.css';
 import Header from '../../components/header';
 import CardBook from '../../components/bookCard';
 
@@ -18,16 +19,17 @@ function Livros() {
       <Header />
       <main>
         <h1>Livros Encontrados</h1>
-
-        { books && books.map((book) => (
-          <CardBook
-            key={ book.id }
-            id={ book.id }
-            titulo={ book.titulo }
-            editora={ book.editora }
-            anoPublicacao={ book.anoPublicacao }
-          />
-        ))}
+        <section className="container">
+          { books && books.map((book) => (
+            <CardBook
+              key={ book.id }
+              id={ book.id }
+              titulo={ book.titulo }
+              editora={ book.editora }
+              anoPublicacao={ book.anoPublicacao }
+            />
+          ))}
+        </section>
       </main>
     </>
   );

@@ -1,23 +1,31 @@
 import React from 'react';
 import './style.css';
 import PropTypes from 'prop-types';
+import Button from '../button';
 
 function BookCard({ id, titulo, editora, anoPublicacao }) {
   return (
     <div className="container-card">
-      <div>
+      <div className="card">
         <p>{ titulo }</p>
-      </div>
-      <div>
         <p>{ editora }</p>
-      </div>
-      <div>
         <p>{ anoPublicacao }</p>
-      </div>
-      <div>
         <p>{ id }</p>
       </div>
-      <div></div>
+      <div className="button-container">
+        <Button
+          label="Editar"
+          name="edit"
+          id={ id }
+          onClick=""
+        />
+        <Button
+          label="Deletar"
+          name="delete"
+          id={ id }
+          onClick=""
+        />
+      </div>
     </div>
   );
 }

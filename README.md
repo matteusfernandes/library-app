@@ -137,7 +137,9 @@ O desafio proposto era a construção de uma **API** para uma livraria que faça
 
 ## Testes Automatizados
 
-  Durante o desenvolvimento do projeto foram criados diversos testes para garantir o funcionamento da API, para executar os testes basta navegar até o diretório do **front-end** `cd front-end` ou do **back-end** `cd back-end` e ultilizar o comando `npm test`;
+  Durante o desenvolvimento do projeto foram criados diversos testes para garantir o funcionamento da API, para executar os testes basta navegar até o diretório do **front-end** `cd front-end` ou do **back-end** `cd back-end` e ultilizar o comando `npm test`.
+  
+  - ⚠️ IMPORTANTE ⚠️: Antes de executar os testes do **back-end** é necessário resetar o banco de dados através do comando `npm run db:reset`.
 
 ## Desenvolvimento
   Para construção da API foi ultilizado o método TDD - Test Driven Development, onde primeiro foram escritos testes para então ser implementadas soluções que garantissem o sucesso daquele teste. Logo após, o código passava por uma refatoração e então novos testes eram escritos.

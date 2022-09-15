@@ -12,7 +12,6 @@ export default function Router() {
       <Route path="/livros" element={ <Livros /> } />
       <Route path="/pesquisa" element={ <Pesquisa /> } />
       <Route path="/cadastro" element={ <Cadastro /> } />
-      {/* <Route path="/" element={ <Navigate replace to="/livros" /> } /> */}
     </Routes>
   );
 }

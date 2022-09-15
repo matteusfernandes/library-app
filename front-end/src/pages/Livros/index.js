@@ -14,7 +14,6 @@ function Livros() {
 
   return (
     <>
-      {console.log(books)}
       <Header />
       <main>
         <h1>Livros Encontrados</h1>

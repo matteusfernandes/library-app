@@ -6,7 +6,11 @@ import Button from '../button';
 import Input from '../input';
 
 function BookCard({ id, titulo, editora, anoPublicacao }) {
-  const [editBook, setEditBook] = useState(null);
+  const [editBook, setEditBook] = useState(false);
+  const [idToEdit, setIdToEdit] = useState(null);
+  const [newTitulo, setNewTitulo] = useState('');
+  const [newEditora, setNewEditora] = useState('');
+  const [newAnoPublicacao, setNewAnoPublicacao] = useState('');
 
   const deleteBook = (idToDelete) => {
     api.delete(`/livros/${idToDelete}`)
@@ -16,8 +20,34 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
   const bookToEdit = (idToSearch) => {
     api.get(`/livros/${idToSearch}`)
       .then((apiResponse) => {
-        setEditBook(apiResponse.data);
+        setEditBook(true);
+        setIdToEdit(apiResponse.data.id);
+        setNewTitulo(apiResponse.data.titulo);
+        setNewEditora(apiResponse.data.editora);
+        setNewAnoPublicacao(apiResponse.data.anoPublicacao);
       }).catch((err) => console.log(err));
+  };
+
+  const handleChange = ({ target }) => {
+    const { name, value } = target;
+
+    if (name === 'Titulo') return setNewTitulo(value);
+    if (name === 'Editora') return setNewEditora(value);
+    setNewAnoPublicacao(value);
+  };
+
+  const handleClick = () => {
+    const data = {
+      titulo: newTitulo,
+      editora: newEditora,
+      anoPublicacao: newAnoPublicacao,
+    };
+
+    api.put(`/livros/${idToEdit}`, data)
+      .then(() => {
+        setEditBook(false);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
@@ -43,25 +73,25 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
         />
       </div>
       { editBook && (
-        <div>
+        <div className="div_teste">
           <div>
             <Input
               type="text"
-              value={ editBook.titulo }
+              value={ newTitulo }
               name="Titulo"
-              onChange=""
+              onChange={ handleChange }
             />
             <Input
               type="text"
-              value={ editBook.editora }
-              name="Titulo"
-              onChange=""
+              value={ newEditora }
+              name="Editora"
+              onChange={ handleChange }
             />
             <Input
               type="text"
-              value={ editBook.anoPublicacao }
-              name="Titulo"
-              onChange=""
+              value={ newAnoPublicacao }
+              name="Ano"
+              onChange={ handleChange }
             />
           </div>
           <div>
@@ -70,7 +100,14 @@ function BookCard({ id, titulo, editora, anoPublicacao }) {
               label="Confirmar"
               name="finish-edit"
               id="finish-edit"
-              onClick=""
+              onClick={ () => handleClick() }
+            />
+            <Button
+              type="button"
+              label="Fechar"
+              name="close-edit"
+              id="close-edit"
+              onClick={ () => setEditBook(false) }
             />
           </div>
         </div>

@@ -1,38 +1,102 @@
+'use client';
+
+import Header from '../components/Header';
+import Link from 'next/link';
+
 export default function Home() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100">
-      <header className="bg-slate-900 shadow-lg">
-        <div className="container mx-auto px-4 py-4">
-          <h1 className="text-white text-xl font-bold">BiblioTech</h1>
-        </div>
-      </header>
-      <main className="container mx-auto px-4 py-12">
-        <div className="text-center">
+    <div className="min-h-screen bg-gradient-to-br from-parchment-50 via-warm-50 to-sage-50">
+      <Header />
+      <main className="container mx-auto px-4 py-8">
+        <div className="text-center mb-12">
+          <div className="text-6xl mb-4">📚</div>
           <h1 className="text-4xl font-bold text-slate-800 mb-4">
             Biblioteca Digital
           </h1>
-          <p className="text-lg text-slate-600 mb-8">
-            Sistema de gerenciamento de livros funcionando!
+          <p className="text-lg text-slate-600 max-w-2xl mx-auto mb-8">
+            Bem-vindo ao seu sistema de gerenciamento de livros! Organize, cadastre e explore sua coleção pessoal de forma simples e eficiente.
           </p>
-          <div className="space-x-4">
-            <a
-              href="/livros"
-              className="inline-block bg-slate-800 text-white px-6 py-3 rounded-lg hover:bg-slate-700 transition-colors"
-            >
-              Ver Livros
-            </a>
-            <a
-              href="/cadastro"
-              className="inline-block bg-blue-600 text-white px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-            >
-              Cadastrar Livro
-            </a>
-            <a
-              href="/pesquisa"
-              className="inline-block bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition-colors"
-            >
-              Pesquisar
-            </a>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          {/* Card Ver Livros */}
+          <Link href="/livros" className="group">
+            <div className="bg-white/90 backdrop-blur-sm rounded-lg p-8 shadow-book border border-warm-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="text-4xl mb-4 text-center">📖</div>
+              <h3 className="text-xl font-bold text-slate-800 mb-3 text-center">
+                Meus Livros
+              </h3>
+              <p className="text-slate-600 text-center mb-4">
+                Visualize todos os livros da sua coleção pessoal
+              </p>
+              <div className="text-center">
+                <span className="inline-flex items-center px-4 py-2 bg-slate-800 text-white rounded-md group-hover:bg-slate-700 transition-colors">
+                  Ver Coleção →
+                </span>
+              </div>
+            </div>
+          </Link>
+
+          {/* Card Cadastrar */}
+          <Link href="/cadastro" className="group">
+            <div className="bg-white/90 backdrop-blur-sm rounded-lg p-8 shadow-book border border-warm-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="text-4xl mb-4 text-center">✍️</div>
+              <h3 className="text-xl font-bold text-slate-800 mb-3 text-center">
+                Cadastrar Livro
+              </h3>
+              <p className="text-slate-600 text-center mb-4">
+                Adicione novos livros à sua biblioteca digital
+              </p>
+              <div className="text-center">
+                <span className="inline-flex items-center px-4 py-2 bg-blue-600 text-white rounded-md group-hover:bg-blue-700 transition-colors">
+                  Adicionar →
+                </span>
+              </div>
+            </div>
+          </Link>
+
+          {/* Card Pesquisar */}
+          <Link href="/pesquisa" className="group">
+            <div className="bg-white/90 backdrop-blur-sm rounded-lg p-8 shadow-book border border-warm-300 hover:shadow-xl transition-all duration-300 hover:-translate-y-1">
+              <div className="text-4xl mb-4 text-center">🔍</div>
+              <h3 className="text-xl font-bold text-slate-800 mb-3 text-center">
+                Pesquisar
+              </h3>
+              <p className="text-slate-600 text-center mb-4">
+                Encontre rapidamente qualquer livro na sua coleção
+              </p>
+              <div className="text-center">
+                <span className="inline-flex items-center px-4 py-2 bg-green-600 text-white rounded-md group-hover:bg-green-700 transition-colors">
+                  Buscar →
+                </span>
+              </div>
+            </div>
+          </Link>
+        </div>
+
+        {/* Seção de Estatísticas */}
+        <div className="mt-16 text-center">
+          <div className="max-w-3xl mx-auto bg-white/90 backdrop-blur-sm rounded-lg p-8 shadow-book border border-warm-300">
+            <h2 className="text-2xl font-bold text-slate-800 mb-4">
+              🎯 Sua Jornada Literária
+            </h2>
+            <p className="text-slate-600 mb-6">
+              Organize sua biblioteca, acompanhe suas leituras e descubra novos horizontes através dos livros.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              <div className="text-center">
+                <div className="text-3xl font-bold text-slate-800">∞</div>
+                <div className="text-slate-600">Possibilidades</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-slate-800">📚</div>
+                <div className="text-slate-600">Organização</div>
+              </div>
+              <div className="text-center">
+                <div className="text-3xl font-bold text-slate-800">✨</div>
+                <div className="text-slate-600">Descobertas</div>
+              </div>
+            </div>
           </div>
         </div>
       </main>

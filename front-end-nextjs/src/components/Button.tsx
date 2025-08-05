@@ -21,15 +21,18 @@ export default function Button({
   };
   
   const sizeClasses = {
-    sm: 'px-3 py-1.5 text-sm',
-    md: 'px-6 py-2.5',
-    lg: 'px-8 py-3 text-lg',
+    sm: 'px-2 sm:px-3 py-1 sm:py-1.5 text-xs sm:text-sm',
+    md: 'px-4 sm:px-6 py-2 sm:py-2.5 text-sm sm:text-base',
+    lg: 'px-6 sm:px-8 py-3 sm:py-4 text-base sm:text-lg',
   };
-  
-  const classes = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
-  
+
+  const combinedClasses = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${className}`;
+
   return (
-    <button className={classes} {...props}>
+    <button
+      className={combinedClasses}
+      {...props}
+    >
       {children}
     </button>
   );

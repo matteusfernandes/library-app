@@ -80,20 +80,20 @@ export default function Cadastro() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-parchment-50 via-warm-50 to-sage-50">
       <Header />
-      <main className="container mx-auto px-4 py-8">
-        <div className="text-center mb-8">
-          <div className="text-6xl mb-4">✍️</div>
-          <h1 className="text-4xl font-bold text-slate-800 mb-4">
+      <main className="container mx-auto px-4 py-6 sm:py-8">
+        <div className="text-center mb-6 sm:mb-8">
+          <div className="text-5xl sm:text-6xl mb-4">✍️</div>
+          <h1 className="text-3xl sm:text-4xl font-bold text-slate-800 mb-4">
             Cadastrar Novo Livro
           </h1>
-          <p className="text-lg text-slate-600 max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto px-2">
             Expanda sua biblioteca digital adicionando um novo livro à sua coleção.
           </p>
         </div>
         
-        <div className="max-w-lg mx-auto">
-          <div className="bg-white/90 backdrop-blur-sm rounded-lg p-8 shadow-book border border-warm-300">
-            <form onSubmit={handleSubmit} className="space-y-6">
+        <div className="max-w-lg mx-auto px-2">
+          <div className="bg-white/90 backdrop-blur-sm rounded-lg p-6 sm:p-8 shadow-book border border-warm-300">
+            <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <Input
                 type="text"
                 label="📚 Título do Livro"

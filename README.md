@@ -1,192 +1,278 @@
-# :rocket: Repositório do desafio prático para vaga de Desenvolvedor da Empresa Micks - Library App!
+# 📚 Library App - Sistema de Gerenciamento de Biblioteca
 
-## Contexto
+> **Desafio prático para vaga de Desenvolvedor Full Stack** - Uma aplicação completa para gerenciamento de livros com interface moderna e API robusta.
 
-O desafio proposto era a construção de uma **API** para uma livraria que faça as principais operações **C.R.U.D** e uma interface web para consumir todas as rotas da **API**.
+## 🎯 Visão Geral
 
-## Protótipo e Diagrama de ER
+A **Library App** é um sistema completo de gerenciamento de biblioteca que permite:
 
-## Instruções
-1. Clone o repositório
-- `git clone git@github.com:matteusfernandes/library-app.git`
-- Entre na pasta do repositório que você acabou de clonar:
-    - `cd library-app`
+- ✅ **CRUD completo** de livros (Create, Read, Update, Delete)
+- 🌐 **Interface web moderna** construída com Next.js 15 + TypeScript
+- 🚀 **API RESTful** desenvolvida em Node.js + Express
+- 📊 **Banco de dados MySQL** com Sequelize ORM
+- 🐳 **Containerização completa** com Docker e Docker Compose
+- 🎨 **Design responsivo** com Tailwind CSS
 
-2. Instale as dependências e inicialize o projeto
-- ⚠️ IMPORTANTE ⚠️: Para testar o Projeto localmente, é fundamental configurar o arquivo de variáveis de ambiente `.env` (de `environment`) dentro da pasta `./back-end`, conforme exemplo em `.env.example`, na mesma pasta, e o `.env` na pasta raiz do projeto para ultilizar o `docker-compose`. Esse arquivo servirá de referência para o projeto e caso não exista, será utilizado valores `default` pro processo (O que pode estourar erro no teste local, caso suas configurações não sejam as mesmas).
+## 🚀 Início Rápido (Docker - Recomendado)
 
-- ⚠️ IMPORTANTE ⚠️: Esse projeto está pré-configurado para o uso do docker, rodando assim **3** containers: **Front-End**, **Back-End** e **Database**.
+### Pré-requisitos
+- [Docker](https://docs.docker.com/get-docker/) instalado
+- [Docker Compose](https://docs.docker.com/compose/install/) instalado
 
-  ### **Utilizando Docker**
+### Executar o projeto
 
-  #### Caso não possua o Docker e Docker Compose em sua máquina:
-
-    - O primeiro passo para utilizar o Docker é realizar a sua instalação. Isso nos dará acesso à sua interface de linha de comando (CLI). Caso você já possua alguma versão de Docker instalada na sua máquina e queira refazer o processo de instalação para atualizar ou para corrigir algum problema, primeiro você deve remover os pacotes da versão que está na sua máquina. Para isso, utilize o seguinte comando no terminal:
-
-    `sudo apt-get remove docker* containerd runc`
-
-    Caso nenhum dos pacotes esteja instalado, esse comando retornará o erro `E: Impossível encontrar o <nome-do-pacote>`. Nesse caso, é só prosseguir com a instalação.
-
-    `sudo apt-get install docker-ce docker-ce-cli containerd.io`
-
-    - Instalando as dependências iniciais
-
-      `sudo apt-get install \
-      apt-transport-https \
-      ca-certificates \
-      curl \
-      gnupg \
-      lsb-release`
-
-    - Adicionando a chave pública do repositório Docker em nossa máquina
-
-      `curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg`
-    
-    - Adicionando o repositório remoto na lista do apt
-
-      `echo \
-        "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" \
-        | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null`
-
-    - Instalando o Docker
-
-      `sudo apt-get update`
-      `sudo apt-get install docker-ce docker-ce-cli containerd.io`
-
-    - Adicionando seu usuário ao grupo de usuários Docker
-
-      `sudo groupadd docker`
-      `sudo usermod -aG docker $USER`
-      `newgrp docker`
-    
-    - Inicie o Daemon do Docker
-
-      `sudo systemctl start docker`
-
-    - Valide a instalação
-
-      `docker run hello-world`
-
-    - Instale o Docker Compose
-
-      `sudo apt install docker-compose`
-
-  #### Caso possua o Docker e Docker Compose em sua máquina:
-
-    - Na pasta raiz do projeto execute o comando abaixo para inicilizar o construção das imagens e inicilização dos containers:
-
-      `docker-compose up -d`
-
-    - Após a conclusão do build e inicialização dos containers, ultilize o seguinte comando para listar os containers ativos:
-      
-      `docker ps`
-    
-    - Acesse o container do **Back-End** através do comando:
-
-      `docker exec -it <numero_do_container> bash`
-
-    - Execute o seguinte comando para criar e povoar o Banco de Dados:
-
-      `npm run db:reset`
-    
-    - Abra seu navegador e acesse:
-
-      `http://localhost:3000`
-
-  ### **Sem Ultilizar Docker**
-
-  - Na pasta raiz do projeto execute o comando:
-
-    `npm run prestart`
-
-    Este comando irá instalar as dependencias tanto do **back-end** quanto do **front-end**
-
-  - Navegue até a pasta do **back-end**:
-
-    `cd back-end`
-
-  - Inicialize o **banco de dados**:
-
-    `npm run db:reset`
-
-  - Inicialize o **back-end**:
-
-    `npm start`
-
-  - Retorne a pasta raiz:
-
-    `cd ..`
-
-  - Navegue até a pasta do **front-end**:
-
-    `cd front-end`
-
-  - Inicialize o **front-end**:
-
-    `npm start`
-
-  - Abra seu navegador e acesse:
-
-    `http://localhost:3000`
-
-## Testes Automatizados
-
-  Durante o desenvolvimento do projeto foram criados diversos testes para garantir o funcionamento da API, para executar os testes basta navegar até o diretório do **front-end** `cd front-end` ou do **back-end** `cd back-end` e ultilizar o comando `npm test`;
-
-## Desenvolvimento
-  Para construção da API foi ultilizado o método TDD - Test Driven Development, onde primeiro foram escritos testes para então ser implementadas soluções que garantissem o sucesso daquele teste. Logo após, o código passava por uma refatoração e então novos testes eram escritos.
-
-  No **back-end** foram testadas tanto a integração da API, quanto para os services da rota e para o model do banco de dados.
-
-  No **front-end** foram escritos apenas testes do contexto geral do App.
-
-  Para o banco de dados, a solução escolhida foi ultilizar ORM `Object-Relational Mapping` com o **sequelize** ultilizando `MySql`
-
-## Linter
-
-Foi usado o [ESLint](https://eslint.org/) para fazer a análise estática do código.
-
-Este projeto já vem com as dependências relacionadas ao _linter_ configuradas nos arquivos `package.json` nos seguintes caminhos:
-
-- `library-app/back-end/package.json`
-- `library-app/front-end/package.json`
-
-Para poder rodar os `ESLint` basta executar o comando `npm install` dentro do projeto de forma individual, ou seja, precisa-se executar esse comando dentro da pasta `back-end` e também na pasta `front-end` e depois `npm run lint` dentro de cada uma dessas pastas, assim você verifica as particularidades individualmente. Se a análise do `ESLint` encontrar problemas no seu código, tais problemas serão mostrados no seu terminal. Se não houver problema no seu código, nada será impresso no seu terminal.
-
-Devido ao fato de as configurações das regras do `ESLint` dos projetos de front e back **serem diferentes**, **é preciso executar o `ESLint` em cada projeto**.
-
-Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
-  - **Dica**: Abra separadamente cada pasta do projeto (`back-end` e `front-end` em `VSCode`s separados, para tirar proveito do `ESLint` individual de cada projeto).
-
-## Migração para Next.js
-
-### 🚀 **Nova Implementação com Next.js**
-
-O front-end foi migrado de React puro para **Next.js 15** com as seguintes melhorias:
-
-- **TypeScript**: Tipagem completa para melhor desenvolvimento
-- **Tailwind CSS**: Design system moderno e responsivo  
-- **App Router**: Roteamento baseado em arquivos do Next.js 15
-- **Componentes Reutilizáveis**: Arquitetura mais organizada
-- **Estados de Loading**: Melhor feedback visual
-- **Validação Robusta**: Validação client-side aprimorada
-
-#### Como usar a nova versão:
-
-**Com Docker (Recomendado):**
+1. **Clone o repositório**:
 ```bash
-# O docker-compose já foi atualizado para usar o Next.js
-docker-compose up -d
+git clone https://github.com/matteusfernandes/library-app.git
+cd library-app
 ```
 
-**Desenvolvimento local:**
+2. **Configure as variáveis de ambiente**:
 ```bash
-cd front-end-nextjs
+cp .env.example .env
+```
+
+3. **Execute com Docker**:
+```bash
+docker compose up -d
+```
+
+4. **Acesse a aplicação**:
+- 🌐 **Frontend**: http://localhost:3000
+- 🔌 **API**: http://localhost:3001/livros
+- 📊 **MySQL**: localhost:3307
+
+### ✅ Verificar se está funcionando
+```bash
+# Verificar containers
+docker compose ps
+
+# Testar a API
+curl http://localhost:3001/livros
+
+# Ver logs
+docker compose logs
+```
+
+## 🛠️ Tecnologias Utilizadas
+
+### Frontend
+- **Next.js 15** - Framework React com App Router
+- **TypeScript** - Tipagem estática
+- **Tailwind CSS** - Framework CSS utilitário
+- **React Hooks** - Gerenciamento de estado
+
+### Backend
+- **Node.js 18** - Runtime JavaScript
+- **Express.js** - Framework web
+- **Sequelize** - ORM para banco de dados
+- **MySQL 8.0** - Banco de dados relacional
+
+### DevOps
+- **Docker** - Containerização
+- **Docker Compose** - Orquestração de containers
+- **ESLint** - Análise estática de código
+
+## 📁 Estrutura do Projeto
+
+```
+library-app/
+├── 📂 back-end/           # API REST em Node.js + Express
+│   ├── src/
+│   │   ├── api/           # Configuração do servidor
+│   │   ├── books/         # Controllers e Services dos livros
+│   │   ├── database/      # Modelos, migrações e seeders
+│   │   ├── middlewares/   # Middlewares personalizados
+│   │   └── routes/        # Definição das rotas
+│   └── Dockerfile
+├── 📂 front-end/          # Interface em Next.js + TypeScript
+│   ├── src/
+│   │   ├── app/           # App Router do Next.js 15
+│   │   ├── components/    # Componentes reutilizáveis
+│   │   └── api/           # Cliente HTTP
+│   └── Dockerfile
+├── 📂 scripts/            # Scripts de configuração
+├── docker-compose.yml     # Orquestração dos containers
+├── .env.example          # Template de variáveis de ambiente
+└── DOCKER.md             # Documentação completa do Docker
+```
+
+## 🔧 Desenvolvimento Local (Sem Docker)
+
+### Backend
+
+1. **Navegue para o diretório do backend**:
+```bash
+cd back-end
+```
+
+2. **Instale as dependências**:
+```bash
 npm install
-npm run dev
-# Acesse http://localhost:3000
 ```
 
-Para mais detalhes sobre a migração, consulte [MIGRATION.md](./MIGRATION.md).
+3. **Configure o banco de dados**:
+```bash
+# Configure suas variáveis de ambiente no .env
+npm run db:reset
+```
 
-#### 💻 **Desenvolvido por** [@matteusfernandes](https://github.com/matteusfernandes) • 2022 🔗 [LinkedIn](https://www.linkedin.com/in/matteusfernandes/)
+4. **Execute o backend**:
+```bash
+npm start
+# Disponível em: http://localhost:3001
+```
+
+### Frontend
+
+1. **Navegue para o diretório do frontend**:
+```bash
+cd front-end
+```
+
+2. **Instale as dependências**:
+```bash
+npm install
+```
+
+3. **Execute o frontend**:
+```bash
+npm run dev
+# Disponível em: http://localhost:3000
+```
+
+## 🧪 Testes Automatizados
+
+O projeto utiliza **TDD (Test Driven Development)** com cobertura completa:
+
+### Backend
+```bash
+cd back-end
+npm test
+```
+- ✅ Testes de integração da API
+- ✅ Testes dos services  
+- ✅ Testes dos models
+
+### Frontend  
+```bash
+cd front-end
+npm test
+```
+- ✅ Testes de componentes
+- ✅ Testes de integração
+
+## 📋 API Endpoints
+
+| Método | Endpoint | Descrição |
+|--------|----------|-----------|
+| `GET` | `/livros` | Lista todos os livros |
+| `GET` | `/livros/:id` | Busca livro por ID |
+| `POST` | `/livros` | Cria novo livro |
+| `PUT` | `/livros/:id` | Atualiza livro |
+| `DELETE` | `/livros/:id` | Remove livro |
+
+### Exemplo de uso da API:
+```bash
+# Listar livros
+curl http://localhost:3001/livros
+
+# Criar livro
+curl -X POST http://localhost:3001/livros \
+  -H "Content-Type: application/json" \
+  -d '{"titulo":"Novo Livro","editora":"Editora","anoPublicacao":2025}'
+```
+
+## 🔍 Linter e Qualidade de Código
+
+O projeto utiliza **ESLint** para análise estática de código:
+
+```bash
+# Backend
+cd back-end
+npm run lint
+
+# Frontend  
+cd front-end
+npm run lint
+```
+
+**Dica**: Instale a [extensão ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint) no VS Code para análise em tempo real.
+
+## 📖 Funcionalidades
+
+### Interface Web
+- 📋 **Lista de livros** com visualização em cards
+- ➕ **Cadastro de novos livros** com validação
+- ✏️ **Edição de livros existentes**
+- 🗑️ **Exclusão de livros**
+- 🔍 **Pesquisa e filtros**
+- 📱 **Design responsivo**
+
+### API REST
+- 🔌 **Endpoints RESTful** completos
+- ✅ **Validação de dados**
+- 🛡️ **Middleware de erro personalizado**
+- 📊 **Healthchecks** para containers
+- 🔄 **Relacionamentos com Sequelize**
+
+## 🐳 Docker
+
+Para documentação completa sobre Docker, consulte: **[DOCKER.md](./DOCKER.md)**
+
+### Comandos úteis:
+```bash
+# Iniciar aplicação
+docker compose up -d
+
+# Parar aplicação  
+docker compose down
+
+# Ver logs
+docker compose logs
+
+# Rebuild containers
+docker compose build --no-cache
+
+# Status dos containers
+docker compose ps
+```
+
+## 🚀 Evolução do Projeto
+
+### ✅ Migração para Next.js 15
+- Migração completa de React para **Next.js 15**
+- Implementação do **App Router**
+- Adição de **TypeScript** para tipagem
+- **Tailwind CSS** para design system
+- Componentes reutilizáveis e organizados
+
+### 🔄 Melhorias Implementadas  
+- Interface moderna e responsiva
+- Estados de loading e feedback visual
+- Validação robusta client/server-side
+- Containerização otimizada
+- Documentação completa
+
+## 🤝 Contribuição
+
+1. Fork o projeto
+2. Crie uma branch: `git checkout -b feature/nova-funcionalidade`
+3. Commit suas mudanças: `git commit -m 'Adiciona nova funcionalidade'`
+4. Push para a branch: `git push origin feature/nova-funcionalidade`
+5. Abra um Pull Request
+
+## 📝 Licença
+
+Este projeto foi desenvolvido como desafio técnico para vaga de desenvolvedor.
+
+---
+
+### 💻 **Desenvolvido por** 
+
+**[Matteus Fernandes](https://github.com/matteusfernandes)** 
+
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/matteusfernandes/)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/matteusfernandes)
+
+**2022-2025** | Atualizado em Agosto de 2025

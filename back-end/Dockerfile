@@ -1,8 +1,18 @@
-FROM node:14-alpine
+FROM node:18-alpine
+
 WORKDIR /app
-EXPOSE 3001
+
+# Copy package files first for better caching
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy source code
 COPY . .
-ADD ./node_modules.tar.gz ./
-RUN npm install
-CMD npm run db:reset
-ENTRYPOINT ["npm", "start"]
+
+# Expose port
+EXPOSE 3001
+
+# Wait for database and run migrations/seeds, then start server
+CMD ["sh", "-c", "sleep 10 && npm run db:reset && npm start"]

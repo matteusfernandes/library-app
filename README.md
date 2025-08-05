@@ -158,4 +158,35 @@ Devido ao fato de as configurações das regras do `ESLint` dos projetos de fron
 Você pode também instalar o plugin do `ESLint` no `VSCode`, bastar ir em extensions e baixar o [plugin `ESLint`](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).
   - **Dica**: Abra separadamente cada pasta do projeto (`back-end` e `front-end` em `VSCode`s separados, para tirar proveito do `ESLint` individual de cada projeto).
 
+## Migração para Next.js
+
+### 🚀 **Nova Implementação com Next.js**
+
+O front-end foi migrado de React puro para **Next.js 15** com as seguintes melhorias:
+
+- **TypeScript**: Tipagem completa para melhor desenvolvimento
+- **Tailwind CSS**: Design system moderno e responsivo  
+- **App Router**: Roteamento baseado em arquivos do Next.js 15
+- **Componentes Reutilizáveis**: Arquitetura mais organizada
+- **Estados de Loading**: Melhor feedback visual
+- **Validação Robusta**: Validação client-side aprimorada
+
+#### Como usar a nova versão:
+
+**Com Docker (Recomendado):**
+```bash
+# O docker-compose já foi atualizado para usar o Next.js
+docker-compose up -d
+```
+
+**Desenvolvimento local:**
+```bash
+cd front-end-nextjs
+npm install
+npm run dev
+# Acesse http://localhost:3000
+```
+
+Para mais detalhes sobre a migração, consulte [MIGRATION.md](./MIGRATION.md).
+
 #### 💻 **Desenvolvido por** [@matteusfernandes](https://github.com/matteusfernandes) • 2022 🔗 [LinkedIn](https://www.linkedin.com/in/matteusfernandes/)

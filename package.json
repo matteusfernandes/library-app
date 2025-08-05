@@ -3,9 +3,20 @@
   "version": "1.0.0",
   "description": "Aplicação criada como parte de processo avaliativo para vaga de Desenvolvedor da empresa Micks. O intuíto da aplicação é simular uma API que seria utilizada por uma livraria.",
   "scripts": {
-    "prestart": "./scripts/prestart-dev.sh"
+    "prestart": "./scripts/prestart-dev.sh",
+    "start": "concurrently \"npm run dev:api\" \"npm run dev:next\"",
+    "dev": "concurrently \"npm run dev:api\" \"npm run dev:next\"",
+    "dev:next": "cd front-end-nextjs && npm run dev",
+    "dev:api": "cd back-end && npm start",
+    "install:all": "npm install && cd back-end && npm install && cd ../front-end-nextjs && npm install && cd ..",
+    "db:reset": "cd back-end && npm run db:reset",
+    "build:next": "cd front-end-nextjs && npm run build",
+    "test:api": "cd back-end && npm test"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^9.2.0"
+  }
 }

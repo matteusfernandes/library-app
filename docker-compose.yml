@@ -13,13 +13,17 @@ services:
       - db
   front-end:
     build:
-      context: ./front-end
+      context: ./front-end-nextjs
     ports:
-      - ${PORT}:${PORT}
+      - ${PORT}:3000
     volumes:
-      - ./front-end:/app
+      - ./front-end-nextjs:/app
+      - /app/node_modules
+      - /app/.next
     env_file:
       - ./.env
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:${API_PORT}
     depends_on:
       - back-end
   db:

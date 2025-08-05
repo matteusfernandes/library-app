@@ -1,0 +1,103 @@
+@import 'tailwindcss';
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&display=swap');
+
+:root {
+	--background: #fefcf8;
+	--foreground: #1e293b;
+}
+
+@theme inline {
+	--color-background: var(--background);
+	--color-foreground: var(--foreground);
+	--font-sans: var(--font-geist-sans);
+	--font-mono: var(--font-geist-mono);
+	--font-serif: 'Playfair Display', Georgia, serif;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+	width: 8px;
+}
+
+::-webkit-scrollbar-track {
+	background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+	background: #d97706;
+	border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: #b45309;
+}
+
+body {
+	background: var(--background);
+	color: var(--foreground);
+	font-family: Arial, Helvetica, sans-serif;
+}
+
+/* Custom animations */
+@keyframes bookHover {
+	0% {
+		transform: translateY(0) scale(1);
+	}
+	50% {
+		transform: translateY(-2px) scale(1.02);
+	}
+	100% {
+		transform: translateY(-4px) scale(1.05);
+	}
+}
+
+@keyframes fadeInUp {
+	0% {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+	100% {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+/* Utility classes */
+.animate-book-hover {
+	animation: bookHover 0.3s ease-out forwards;
+}
+
+.animate-fade-in-up {
+	animation: fadeInUp 0.6s ease-out;
+}
+
+/* Line clamp utility */
+.line-clamp-2 {
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+/* Background patterns */
+.bg-pattern-library {
+	background-image: radial-gradient(
+		circle at 1px 1px,
+		rgba(217, 119, 6, 0.15) 1px,
+		transparent 0
+	);
+	background-size: 20px 20px;
+}
+
+.bg-pattern-books {
+	background-image: linear-gradient(
+			45deg,
+			rgba(217, 119, 6, 0.1) 25%,
+			transparent 25%
+		),
+		linear-gradient(-45deg, rgba(217, 119, 6, 0.1) 25%, transparent 25%),
+		linear-gradient(45deg, transparent 75%, rgba(217, 119, 6, 0.1) 75%),
+		linear-gradient(-45deg, transparent 75%, rgba(217, 119, 6, 0.1) 75%);
+	background-size: 30px 30px;
+	background-position: 0 0, 0 15px, 15px -15px, -15px 0px;
+}
